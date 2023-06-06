@@ -14,19 +14,16 @@ class PhoneLookup(insightconnect_plugin_runtime.Action):
 
     def run(self, params={}) -> dict:
 
-        phone_input = params.get(Input.PHONE)
-        p_strictness = params.get(Input.STRICTNESS)
-        try: 
-            p_country = params.get(Input.COUNTRY)
-        except ValueError:
-            p_country = ""
-        p_additional_params = {
-            'strictness': p_strictness,
-            'country': p_country
-
+       
+        additional_params = {
+        
+            'phone':params.get(Input.PHONE),
+            'strictness': params.get(Input.STRICTNESS),
+            'country': params.get(Input.COUNTRY," ")
+            
             }
-        phone_params = {'phone': phone_input, 'params': p_additional_params}
-        self.logger.info(f"[ACTION LOG] Getting information for Phone: {phone_input} \n")
-        response = self.connection.ipqs_client.ipqs_lookup(PHONE_ENDPOINT, phone_params)
+        
+        self.logger.info(f"[ACTION LOG] Getting information for Phone: {params.get(Input.PHONE)} \n")
+        response = self.connection.ipqs_client.ipqs_lookup(PHONE_ENDPOINT, additional_params)
         return response
 

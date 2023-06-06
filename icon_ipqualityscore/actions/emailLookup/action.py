@@ -13,18 +13,15 @@ class EmailLookup(insightconnect_plugin_runtime.Action):
             output=EmailLookupOutput())
 
     def run(self, params={}) -> dict:
-        email_input = params.get(Input.EMAILADDRESS)
-        abuse_strictness = params.get(Input.ABUSE_STRICTNESS)
-        fast = params.get(Input.FAST)
-        timeout = params.get(Input.TIMEOUT)
-        suggest_domain = params.get(Input.SUGGEST_DOMAIN)
+                
         additional_params = {
-                        'abuse_strictness': abuse_strictness,
-                        'fast': fast,
-                        'timeout': timeout,
-                        'suggest_domain': suggest_domain
+                        'email':params.get(Input.EMAILADDRESS),
+                        'abuse_strictness': params.get(Input.ABUSE_STRICTNESS),
+                        'fast': params.get(Input.FAST),
+                        'timeout': params.get(Input.TIMEOUT),
+                        'suggest_domain': params.get(Input.SUGGEST_DOMAIN)
         }
-        email_params = {'email': email_input, 'params': additional_params}
-        self.logger.info(f"[ACTION LOG] Getting information for Email address: {email_input} \n")
-        response = self.connection.ipqs_client.ipqs_lookup(EMAIL_ENDPOINT, email_params)
+     
+        self.logger.info(f"[ACTION LOG] Getting information for Email address: {params.get(Input.EMAILADDRESS)} \n")
+        response = self.connection.ipqs_client.ipqs_lookup(EMAIL_ENDPOINT, additional_params)
         return response

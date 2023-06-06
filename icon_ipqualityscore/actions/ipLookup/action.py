@@ -13,30 +13,16 @@ class IpLookup(insightconnect_plugin_runtime.Action):
             output=IpLookupOutput())
 
     def run(self, params={}) -> dict:
-        ip_input = params.get(Input.IPADDRESS)
-        ip_strictness = params.get(Input.STRICTNESS)
-        try:
-            ip_user_agent = params.get(Input.USER_AGENT)
-        except ValueError:
-            ip_strictness = ""
-        try:
-            ip_user_language = params.get(Input.USER_LANGUAGE)
-        except ValueError:
-            ip_user_language = ""
-        ip_fast = params.get(Input.FAST)
-        ip_mobile = params.get(Input.MOBILE)
-        ip_allow_public_access_points = params.get(Input.ALLOW_PUBLIC_ACCESS_POINTS)
-        ip_lighter_penalties = params.get(Input.LIGHTER_PENALTIES)
         ip_additional_params = {
-            'strictness': ip_strictness,
-            'user_agent': ip_user_agent,
-            'user_language': ip_user_language,
-            'fast': ip_fast,
-            'mobile': ip_mobile,
-            'allow_public_access_points': ip_allow_public_access_points,
-            'lighter_penalties': ip_lighter_penalties
-        }
-        self.logger.info(f"[ACTION LOG] Getting information for IP address: {ip_input} \n")
-        ip_params = {'ip': ip_input, 'params': ip_additional_params}
-        response = self.connection.ipqs_client.ipqs_lookup(IP_ENDPOINT, ip_params)
+            'ip':params.get(Input.IPADDRESS),
+            'strictness': params.get(Input.STRICTNESS),
+            'user_agent': params.get(Input.USER_AGENT," "),
+            'user_language': params.get(Input.USER_LANGUAGE," "),
+            'fast': params.get(Input.FAST),
+            'mobile': params.get(Input.MOBILE),
+            'allow_public_access_points': params.get(Input.ALLOW_PUBLIC_ACCESS_POINTS),
+            'lighter_penalties': params.get(Input.LIGHTER_PENALTIES)
+                                                                        }
+        self.logger.info(f"[ACTION LOG] Getting information for IP address: {params.get(Input.IPADDRESS)} \n")
+        response = self.connection.ipqs_client.ipqs_lookup(IP_ENDPOINT, ip_additional_params) 
         return response

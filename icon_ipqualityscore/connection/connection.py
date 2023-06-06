@@ -36,6 +36,7 @@ class Connection(insightconnect_plugin_runtime.Connection):
             }
             ud_params = {'url': "www.ipqualityscore.com", 'params': additional_params}
             self.ipqs_client.ipqs_lookup(URL_ENDPOINT, ud_params)
-            return {"success": True}
+           # return {"success": True}
+            return None
         except PluginException as error:
             raise ConnectionTestException(cause=error.cause, assistance=error.assistance, data=error.data)
