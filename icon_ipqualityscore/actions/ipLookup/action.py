@@ -13,7 +13,17 @@ class IpLookup(insightconnect_plugin_runtime.Action):
             output=IpLookupOutput())
 
     def run(self, params={}) -> dict:
-        ip_additional_params = {
+        """
+        This function creates a dictionary of the arguments sent to the IPQS
+        API based on the ip_additional_params.
+        Args:
+            params(dict):User Inputs
+
+        Returns:
+            response: returns JSON response from the API
+
+        """
+        additional_params = {
             'ip':params.get(Input.IPADDRESS),
             'strictness': params.get(Input.STRICTNESS),
             'user_agent': params.get(Input.USER_AGENT," "),
@@ -24,5 +34,5 @@ class IpLookup(insightconnect_plugin_runtime.Action):
             'lighter_penalties': params.get(Input.LIGHTER_PENALTIES)
                                                                         }
         self.logger.info(f"[ACTION LOG] Getting information for IP address: {params.get(Input.IPADDRESS)} \n")
-        response = self.connection.ipqs_client.ipqs_lookup(IP_ENDPOINT, ip_additional_params) 
+        response = self.connection.ipqs_client.ipqs_lookup(IP_ENDPOINT, additional_params) 
         return response

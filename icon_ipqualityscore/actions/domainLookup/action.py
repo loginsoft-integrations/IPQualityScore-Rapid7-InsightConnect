@@ -13,6 +13,16 @@ class DomainLookup(insightconnect_plugin_runtime.Action):
             output=DomainLookupOutput())
 
     def run(self, params={}) -> dict:
+        """
+            This function creates a dictionary of the arguments sent to the IPQS
+            API based on the ip_additional_params.
+            Args:
+                params(dict):User Inputs
+
+            Returns:
+                response: returns JSON response from the API
+
+        """
         
         
         additional_params = {
