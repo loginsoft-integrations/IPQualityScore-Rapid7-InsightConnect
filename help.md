@@ -542,5 +542,5 @@ _This plugin does not contain any troubleshooting information._
 
 ## References
 
-* [IPQS Fraud and Risk Scoring](LINK TO PRODUCT/VENDOR WEBSITE)
+* [IPQS Fraud and Risk Scoring](https://www.ipqualityscore.com/)
 
