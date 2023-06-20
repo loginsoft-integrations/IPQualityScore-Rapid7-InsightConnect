@@ -25,9 +25,6 @@ The connection configuration accepts the following parameters:
 |----|----|-------|--------|-----------|----|-------|
 |apiKey|credential_secret_key|None|True|IPQualityScore API Key|None|None|
 
-Example input:
-```
-```
 
 ## Technical Details
 
@@ -545,5 +542,5 @@ _This plugin does not contain any troubleshooting information._
 
 ## References
 
-* [IPQS Fraud and Risk Scoring](LINK TO PRODUCT/VENDOR WEBSITE)
+* [IPQS Fraud and Risk Scoring](https://www.ipqualityscore.com/)
 
